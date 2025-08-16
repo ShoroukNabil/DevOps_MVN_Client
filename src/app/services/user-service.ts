@@ -11,8 +11,8 @@ import {environment} from "../../environments/environment.prod";
 export class UserService {
   // private usersUrl: string;
   private usersUrl = environment.apiUrl.endsWith('/')
-    ? environment.apiUrl + 'DevOpsBuildToolDemo/user/'
-    : environment.apiUrl + '/DevOpsBuildToolDemo/user/';
+    ? environment.apiUrl + 'user/'
+    : environment.apiUrl + '/user/';
 
   constructor(private http: HttpClient) {
     // this.usersUrl = 'http://localhost:8040/DevOpsBuildToolDemo/user/';
