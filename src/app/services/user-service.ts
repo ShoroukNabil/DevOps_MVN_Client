@@ -4,18 +4,19 @@ import {Observable} from "rxjs";
 import {UserModel} from "../models/user-model";
 import {BaseResponse} from "../models/base-response";
 import {environment} from "../../environments/environment.prod";
+import {ConfigService} from "../config.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  // private usersUrl: string;
-  private usersUrl = environment.apiUrl.endsWith('/')
-    ? environment.apiUrl + 'user/'
-    : environment.apiUrl + '/user/';
+  private usersUrl!: string;
 
-  constructor(private http: HttpClient) {
-    // this.usersUrl = 'http://localhost:8040/DevOpsBuildToolDemo/user/';
+  constructor(private http: HttpClient, private config: ConfigService) {
+    const baseUrl = this.config.apiUrl.endsWith('/')
+      ? this.config.apiUrl
+      : this.config.apiUrl + '/';
+    this.usersUrl = baseUrl + 'user/';
   }
 
   public findAll(): Observable<UserModel[]> {
